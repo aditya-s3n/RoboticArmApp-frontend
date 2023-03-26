@@ -1,5 +1,4 @@
 import Head from 'next/head'
-import { Inter } from 'next/font/google'
 import Script from 'next/script'
 import styles from '@/styles/Home.module.css'
 
@@ -34,18 +33,18 @@ export default function Home() {
           <h1 className='mx-2'>NAME</h1>
         </div>
         
-        <h1>CURRENT</h1>
+        <h1 className='text-success text-decoration-underline'>CURRENT POSITION</h1>
 
-        <div className='d-flex justify-content-center'>
+        <div className='d-flex justify-content-center my-5'>
           <h2>Queue:</h2>
           
           <Queue />
         </div>
 
-        <div className='d-flex justify-content-center mx-5 px-5 my-3'>
+        <div className="d-flex justify-content-center my-4">
           <h2 className='mx-2'>NAME: </h2>
 
-          <div className="input-group input-group-lg">
+          <div className={`input-group input-group-lg ${styles.input_text}`}>
             <input type="text" className="form-control" placeholder="Type here..." aria-label="Username" aria-describedby="addon-wrapping" />
           </div>
 
