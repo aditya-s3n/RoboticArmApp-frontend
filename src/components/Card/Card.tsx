@@ -1,18 +1,18 @@
 import Image from "next/image";
 import styles from "./card.module.css"
 
-function Card() {
+function Card(props: { size: number, title: string, imgURL: string, className?: string }) {
     return (
-        <button className={`btn p-0 ${styles.card_custom}`} type="button">
+        <button className={`btn p-0 ${styles.card_custom} ${props.className}`} type="button">
             <div className="card card-custom">
                 <div className="card-body text-center pb-1">
                     <Image
-                        src={"/card-imgs/peace-sign.png"}
+                        src={props.imgURL}
                         alt="card-img"
-                        width={75}
-                        height={75}
+                        width={props.size}
+                        height={props.size}
                     />
-                    <p className="mt-3">Peace Sign</p>
+                    <p className="mt-3">{props.title}</p>
                 </div>
             </div>
         </button>
