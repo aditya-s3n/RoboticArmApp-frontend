@@ -6,6 +6,9 @@ import Card from "@/components/Card/Card";
 import Queue from '@/components/Queue/Queue';
 import Header from '@/components/Header/Header';
 import Footer from '@/components/Footer/Footer';
+import Selection from '@/components/Selection/Selection';
+
+import { selectionNames } from '@/utils/selection_names';
 
 export default function Home() {
   return (
@@ -44,9 +47,11 @@ export default function Home() {
         <div className="d-flex justify-content-center my-4">
           <h2 className='mx-2'>NAME: </h2>
 
-          <div className={`input-group input-group-lg ${styles.input_text}`}>
+          {/* <div className={`input-group input-group-lg ${styles.input_text}`}>
             <input type="text" className="form-control" placeholder="Type here..." aria-label="Username" aria-describedby="addon-wrapping" />
-          </div>
+          </div> */}
+
+          <Selection itemList={selectionNames} className={styles.input_text}/>
 
           <button type="button" className="btn btn-success btn-lg mx-2">Submit</button>
         </div>
