@@ -1,9 +1,15 @@
 import Image from "next/image";
 import styles from "./card.module.css"
 
-function Card(props: { size: number, title: string, imgURL: string, className?: string }) {
+function Card(props: { size: number, title: string, imgURL: string, className?: string, setPreset: any }) {
     return (
-        <button className={`btn p-0 ${styles.card_custom} ${props.className}`} type="button">
+        <button 
+            className={`btn p-0 ${styles.card_custom} ${props.className}`} 
+            type="button"
+            onClick={() => {
+                props.setPreset(props.title);
+            }}
+        >
             <div className="card card-custom">
                 <div className="card-body text-center pb-1">
                     <Image

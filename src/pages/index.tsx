@@ -1,3 +1,6 @@
+import { useState } from 'react';
+
+import { redirect } from 'next/navigation';
 import Head from 'next/head'
 import Script from 'next/script'
 import styles from '@/styles/Home.module.css'
@@ -6,8 +9,17 @@ import Card from "@/components/Card/Card";
 import Queue from '@/components/Queue/Queue';
 import Header from '@/components/Header/Header';
 import Footer from '@/components/Footer/Footer';
+import Selection from '@/components/Selection/Selection';
 
-export default function Home() {
+import { selectionNames } from '@/utils/selection_names';
+import PresetSelection from '@/components/PresetSelection/PresetSelection';
+
+import { makeRequest } from '@/utils/makeRequest';
+
+function Home() {
+  const [name, setName] = useState("");
+  const [preset, setPreset] = useState("");
+
   return (
     <>
       <Head>
@@ -28,6 +40,7 @@ export default function Home() {
             size={100}
             imgURL='/card-imgs/peace-sign.png'
             className='mx-4'
+            setPreset={setPreset}
           />
           
           <h1 className='mx-2'>NAME</h1>
@@ -44,11 +57,27 @@ export default function Home() {
         <div className="d-flex justify-content-center my-4">
           <h2 className='mx-2'>NAME: </h2>
 
-          <div className={`input-group input-group-lg ${styles.input_text}`}>
-            <input type="text" className="form-control" placeholder="Type here..." aria-label="Username" aria-describedby="addon-wrapping" />
-          </div>
+          <Selection 
+            itemList={selectionNames} 
+            className={styles.input_text}
+            setSelectionVariable={setName}
+            selectionList={selectionNames}
+          />
 
-          <button type="button" className="btn btn-success btn-lg mx-2">Submit</button>
+          <button 
+            type="button" 
+            className="btn btn-success btn-lg mx-2"
+            onClick={() => {
+              makeRequest(name, preset);
+            }}
+          >Submit</button>
+        </div>
+
+        <div>
+          <PresetSelection
+            name={name}
+            preset={preset}
+          />
         </div>
 
         <div className='d-flex justify-content-center'>
@@ -75,18 +104,21 @@ export default function Home() {
             size={75}
             imgURL='/card-imgs/peace-sign.png'
             className='mx-4'
+            setPreset={setPreset}
           />
           <Card 
             title='Peace Sign'
             size={75}
             imgURL='/card-imgs/peace-sign.png'
             className='mx-4'
+            setPreset={setPreset}
           />
           <Card 
             title='Peace Sign'
             size={75}
             imgURL='/card-imgs/peace-sign.png'
             className='mx-4'
+            setPreset={setPreset}
           />
         </div>
       </main>
@@ -95,3 +127,5 @@ export default function Home() {
     </>
   )
 }
+
+export default Home;
