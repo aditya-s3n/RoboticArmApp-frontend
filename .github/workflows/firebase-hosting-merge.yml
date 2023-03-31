@@ -18,3 +18,5 @@ jobs:
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_ROBOTIC_ARM_APP }}'
           channelId: live
           projectId: robotic-arm-app
+          env:
+            FIREBASE_CLI_EXPERIMENTS: webframeworks
