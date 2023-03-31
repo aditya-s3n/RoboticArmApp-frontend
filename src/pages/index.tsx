@@ -1,5 +1,6 @@
 import { useState } from 'react';
 
+import { redirect } from 'next/navigation';
 import Head from 'next/head'
 import Script from 'next/script'
 import styles from '@/styles/Home.module.css'
@@ -12,6 +13,8 @@ import Selection from '@/components/Selection/Selection';
 
 import { selectionNames } from '@/utils/selection_names';
 import PresetSelection from '@/components/PresetSelection/PresetSelection';
+
+import { makeRequest } from '@/utils/makeRequest';
 
 function Home() {
   const [name, setName] = useState("");
@@ -61,7 +64,13 @@ function Home() {
             selectionList={selectionNames}
           />
 
-          <button type="button" className="btn btn-success btn-lg mx-2">Submit</button>
+          <button 
+            type="button" 
+            className="btn btn-success btn-lg mx-2"
+            onClick={() => {
+              makeRequest(name, preset);
+            }}
+          >Submit</button>
         </div>
 
         <div>
